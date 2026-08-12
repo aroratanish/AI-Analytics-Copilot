@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dataset Dashboard</title>
+</head>
+<body>
+
+    <h1>Dataset Dashboard</h1>
+
+    <h2>{{ filename }}</h2>
+
+    <h3>Dataset Preview</h3>
+
+    {% for table in tables %}
+
+        {{ table | safe }}
+
+    {% endfor %}
+
+</body>
+
+</html>
