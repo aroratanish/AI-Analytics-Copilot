@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Analytics Copilot</title>
+</head>
+
+<body>
+
+    <h1>AI Analytics Copilot</h1>
+
+    <p>Upload your dataset to begin analysis.</p>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        
+        <input
+            type="file"
+            name="file"
+            accept=".csv,.xlsx"
+            required
+        >
+        <button type="submit">
+            Upload Dataset
+        </button>
+
+    </form>
+
+</body>
+</html>
