@@ -4,18 +4,43 @@
 <head>
     <title>Dataset Dashboard</title>
 </head>
+
 <body>
 
     <h1>Dataset Dashboard</h1>
 
     <h2>{{ filename }}</h2>
 
+    <h3>Dataset Overview</h3>
+
+    <p>Rows: {{ profile.rows }}</p>
+
+    <p>Columns: {{ profile.columns }}</p>
+
+    <p>Missing Values: {{ profile.missing_values }}</p>
+
+    <p>Duplicate Rows: {{ profile.duplicates }}</p>
+
+    <h3>Numerical Columns</h3>
+    <ul>
+        {% for column in profile.numerical_columns %}
+            <li>{{ column }}</li>
+        {% endfor %}
+    </ul>
+
+
+    <h3>Categorical Columns</h3>
+
+    <ul>
+        {% for column in profile.categorical_columns %}
+            <li>{{ column }}</li>
+        {% endfor %}
+    </ul>
+
     <h3>Dataset Preview</h3>
 
     {% for table in tables %}
-
         {{ table | safe }}
-
     {% endfor %}
 
 </body>
