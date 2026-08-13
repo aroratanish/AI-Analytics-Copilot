@@ -1,29 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AI Analytics Copilot</title>
+
+    <!-- Connects this page to our CSS file -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-    <h1>AI Analytics Copilot</h1>
+    <main class="page">
 
-    <p>Upload your dataset to begin analysis.</p>
+        <!-- ==================== HERO SECTION ==================== -->
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        
-        <input
-            type="file"
-            name="file"
-            accept=".csv,.xlsx"
-            required
-        >
-        <button type="submit">
-            Upload Dataset
-        </button>
+        <section class="hero">
 
-    </form>
+            <p class="eyebrow">
+                AI-POWERED DATA ANALYTICS
+            </p>
+
+            <h1>
+                Turn your data into
+                <span>decisions.</span>
+            </h1>
+
+            <p class="subtitle">
+                Upload a dataset and let AI Analytics Copilot
+                analyze, visualize, predict, and explain your data.
+            </p>
+
+        </section>
+
+
+        <!-- ==================== UPLOAD SECTION ==================== -->
+
+        <section class="upload-card">
+
+            <div class="upload-icon">
+                ↑
+            </div>
+
+            <h2>
+                Upload your dataset
+            </h2>
+
+            <p>
+                Supported formats: CSV and Excel
+            </p>
+
+
+            <!--
+                IMPORTANT:
+                This form connects our frontend to
+                the Flask backend's /upload route.
+            -->
+            <form action="/upload"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <!-- Custom file-selection button -->
+                <label for="file" class="file-label">
+                    Choose Dataset
+                </label>
+
+                <!-- Actual file input -->
+                <input
+                    type="file"
+                    id="file"
+                    name="file"
+                    accept=".csv,.xlsx,.xls"
+                    required
+                >
+
+                <!-- JavaScript will update this text -->
+                <p id="file-name" class="file-name">
+                    No file selected
+                </p>
+
+                <!-- Submit button -->
+                <button type="submit"
+                        class="analyze-button">
+                    Analyze Dataset
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ==================== FEATURES ==================== -->
+
+        <section class="features">
+
+            <div class="feature-card">
+
+                <h3>
+                    Automated EDA
+                </h3>
+
+                <p>
+                    Automatically understand your dataset
+                    and discover important patterns.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>
+                    AI Insights
+                </h3>
+
+                <p>
+                    Convert analytical results into
+                    easy-to-understand business insights.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>
+                    ML Predictions
+                </h3>
+
+                <p>
+                    Use machine learning to make
+                    data-driven predictions.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!--
+        Connects this page to our JavaScript file.
+        JavaScript will handle browser-side interactions.
+    -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
+
 </html>
