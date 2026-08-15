@@ -244,7 +244,82 @@
             </div>
 
         </section>
+<!-- =========================
+     EXPLORATORY DATA ANALYSIS
+     ========================= -->
 
+<section class="dashboard-section">
+
+    <div class="section-heading">
+
+        <h2>
+            Exploratory Data Analysis
+        </h2>
+
+        <p>
+            Statistical summary of numerical columns.
+        </p>
+
+    </div>
+
+
+    <div class="eda-table-container">
+
+        <table class="eda-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Statistic
+                    </th>
+
+                    {% for column in eda.numerical_summary.keys() %}
+
+                        <th>
+                            {{ column }}
+                        </th>
+
+                    {% endfor %}
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for statistic in ["count", "mean", "std", "min", "25%", "50%", "75%", "max"] %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                {{ statistic }}
+                            </strong>
+                        </td>
+
+
+                        {% for column in eda.numerical_summary.keys() %}
+
+                            <td>
+                                {{ eda.numerical_summary[column].get(statistic, "-") }}
+                            </td>
+
+                        {% endfor %}
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
 
         <!-- =========================
              FUTURE ANALYTICS
