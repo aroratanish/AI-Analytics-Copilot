@@ -204,3 +204,308 @@ input[type="file"] {
         padding: 30px 20px;
     }
 }
+/* =========================================================
+   DASHBOARD STYLES
+   ========================================================= */
+
+
+/* =========================
+   DASHBOARD PAGE
+   ========================= */
+
+.dashboard-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 70px;
+}
+
+
+/* =========================
+   DASHBOARD HEADER
+   ========================= */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    margin-bottom: 45px;
+}
+
+.dashboard-header h1 {
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+.dataset-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    padding: 12px 16px;
+
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.dataset-name span {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.dataset-name strong {
+    font-size: 14px;
+    word-break: break-word;
+}
+
+
+/* =========================
+   DASHBOARD SECTIONS
+   ========================= */
+
+.dashboard-section {
+    margin-bottom: 45px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.section-heading p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* =========================
+   KPI GRID
+   ========================= */
+
+.kpi-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+
+/*
+    Each KPI card contains:
+
+    Label
+    Value
+*/
+
+.kpi-card {
+    background: white;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    padding: 24px;
+
+    min-height: 120px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.kpi-label {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.kpi-value {
+    font-size: 32px;
+    color: #172033;
+}
+
+
+/* =========================
+   COLUMN INFORMATION
+   ========================= */
+
+.column-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.column-card {
+    background: white;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    padding: 25px;
+}
+
+.column-card h3 {
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+.column-list {
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.column-list li {
+    padding: 7px 11px;
+
+    background: #f1f5f9;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+    color: #334155;
+}
+
+
+/* =========================
+   DATA TABLE
+   ========================= */
+
+.table-container {
+    background: white;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    overflow-x: auto;
+
+    padding: 20px;
+}
+
+
+/*
+    Pandas generates an HTML table.
+
+    These selectors style that generated table.
+*/
+
+.table-container table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 14px;
+}
+
+.table-container th {
+    text-align: left;
+
+    padding: 12px;
+
+    background: #f8fafc;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    font-weight: 700;
+}
+
+.table-container td {
+    padding: 12px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #475569;
+}
+
+.table-container tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================
+   FUTURE FEATURES
+   ========================= */
+
+.future-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.future-card {
+    background: white;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    padding: 24px;
+}
+
+.future-card h3 {
+    font-size: 17px;
+
+    margin-bottom: 10px;
+}
+
+.future-card p {
+    color: #64748b;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   DASHBOARD RESPONSIVENESS
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .future-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dataset-name {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .column-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
