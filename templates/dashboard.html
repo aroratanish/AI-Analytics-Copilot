@@ -1,47 +1,322 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Dataset Dashboard</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dataset Dashboard - AI Analytics Copilot</title>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
+
 
 <body>
 
-    <h1>Dataset Dashboard</h1>
-
-    <h2>{{ filename }}</h2>
-
-    <h3>Dataset Overview</h3>
-
-    <p>Rows: {{ profile.rows }}</p>
-
-    <p>Columns: {{ profile.columns }}</p>
-
-    <p>Missing Values: {{ profile.missing_values }}</p>
-
-    <p>Duplicate Rows: {{ profile.duplicates }}</p>
-
-    <h3>Numerical Columns</h3>
-    <ul>
-        {% for column in profile.numerical_columns %}
-            <li>{{ column }}</li>
-        {% endfor %}
-    </ul>
+    <main class="dashboard-page">
 
 
-    <h3>Categorical Columns</h3>
+        <!-- =========================
+             DASHBOARD HEADER
+             ========================= -->
 
-    <ul>
-        {% for column in profile.categorical_columns %}
-            <li>{{ column }}</li>
-        {% endfor %}
-    </ul>
+        <header class="dashboard-header">
 
-    <h3>Dataset Preview</h3>
+            <div>
 
-    {% for table in tables %}
-        {{ table | safe }}
-    {% endfor %}
+                <p class="eyebrow">
+                    AI ANALYTICS COPILOT
+                </p>
+
+                <h1>
+                    Dataset Dashboard
+                </h1>
+
+            </div>
+
+
+            <div class="dataset-name">
+
+                <span>
+                    Dataset
+                </span>
+
+                <strong>
+                    {{ filename }}
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             DATASET OVERVIEW
+             ========================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Dataset Overview
+                </h2>
+
+                <p>
+                    A quick summary of your uploaded dataset.
+                </p>
+
+            </div>
+
+
+            <div class="kpi-grid">
+
+
+                <!-- Rows -->
+
+                <div class="kpi-card">
+
+                    <span class="kpi-label">
+                        Rows
+                    </span>
+
+                    <strong class="kpi-value">
+                        {{ profile.rows }}
+                    </strong>
+
+                </div>
+
+
+                <!-- Columns -->
+
+                <div class="kpi-card">
+
+                    <span class="kpi-label">
+                        Columns
+                    </span>
+
+                    <strong class="kpi-value">
+                        {{ profile.columns }}
+                    </strong>
+
+                </div>
+
+
+                <!-- Missing Values -->
+
+                <div class="kpi-card">
+
+                    <span class="kpi-label">
+                        Missing Values
+                    </span>
+
+                    <strong class="kpi-value">
+                        {{ profile.missing_values }}
+                    </strong>
+
+                </div>
+
+
+                <!-- Duplicate Rows -->
+
+                <div class="kpi-card">
+
+                    <span class="kpi-label">
+                        Duplicate Rows
+                    </span>
+
+                    <strong class="kpi-value">
+                        {{ profile.duplicates }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COLUMN INFORMATION
+             ========================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Column Information
+                </h2>
+
+                <p>
+                    Columns automatically classified by data type.
+                </p>
+
+            </div>
+
+
+            <div class="column-grid">
+
+
+                <!-- Numerical Columns -->
+
+                <div class="column-card">
+
+                    <h3>
+                        Numerical Columns
+                    </h3>
+
+                    <ul class="column-list">
+
+                        {% for column in profile.numerical_columns %}
+
+                            <li>
+                                {{ column }}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Categorical Columns -->
+
+                <div class="column-card">
+
+                    <h3>
+                        Categorical Columns
+                    </h3>
+
+                    <ul class="column-list">
+
+                        {% for column in profile.categorical_columns %}
+
+                            <li>
+                                {{ column }}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DATASET PREVIEW
+             ========================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Dataset Preview
+                </h2>
+
+                <p>
+                    Preview of the uploaded data.
+                </p>
+
+            </div>
+
+
+            <div class="table-container">
+
+                {% for table in tables %}
+
+                    {{ table | safe }}
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FUTURE ANALYTICS
+             ========================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Coming Next
+                </h2>
+
+                <p>
+                    Automated analytics and AI-powered insights
+                    will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="future-grid">
+
+
+                <div class="future-card">
+
+                    <h3>
+                        Exploratory Data Analysis
+                    </h3>
+
+                    <p>
+                        Discover trends, distributions,
+                        correlations, and patterns.
+                    </p>
+
+                </div>
+
+
+                <div class="future-card">
+
+                    <h3>
+                        AI Insights
+                    </h3>
+
+                    <p>
+                        Convert analytical findings into
+                        understandable business insights.
+                    </p>
+
+                </div>
+
+
+                <div class="future-card">
+
+                    <h3>
+                        ML Predictions
+                    </h3>
+
+                    <p>
+                        Generate predictions using
+                        machine learning models.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
 
 </body>
 
