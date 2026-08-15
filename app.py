@@ -3,6 +3,7 @@ import pandas as pd
 import os
 
 from analysis.profile import profile_dataset
+from analysis.eda import perform_eda
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
@@ -30,12 +31,14 @@ def upload_file():
         return "Unsupported file type"
 
     profile = profile_dataset(df)
+    eda = perform_eda(df)
 
     return render_template(
         "dashboard.html",
         tables=[df.head().to_html(classes="data")],
         filename=file.filename,
-        profile=profile
+        profile=profile,
+        eda=eda
     )
 
 
