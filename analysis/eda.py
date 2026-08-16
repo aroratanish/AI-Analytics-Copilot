@@ -1,81 +1,35 @@
-import pandas as pd
+def generate_eda(df):
 
+    numerical_columns = df.select_dtypes(
+        include="number"
+    ).columns.tolist()
 
-def perform_eda(df):
-    """
-    Perform basic exploratory data analysis
-    on the uploaded dataset.
-    """
+    categorical_columns = df.select_dtypes(
+        include="object"
+    ).columns.tolist()
 
-    # -----------------------------------------
-    # 1. Select numerical columns
-    # -----------------------------------------
+    categorical_analysis = {}
 
-    numerical_df = df.select_dtypes(include="number")
+    for column in categorical_columns:
 
+        value_counts = df[column].value_counts()
 
-    # -----------------------------------------
-    # 2. Select categorical columns
-    # -----------------------------------------
-
-    categorical_df = df.select_dtypes(
-        include=["object", "category", "bool"]
-    )
-
-
-    # -----------------------------------------
-    # 3. Descriptive statistics
-    # -----------------------------------------
-
-    numerical_summary = (
-        numerical_df
-        .describe()
-        .round(2)
-        .to_dict()
-    )
-
-
-    # -----------------------------------------
-    # 4. Categorical summaries
-    # -----------------------------------------
-
-    categorical_summary = {}
-
-    for column in categorical_df.columns:
-
-        categorical_summary[column] = {
-            "unique_values": int(
-                categorical_df[column].nunique()
-            ),
+        categorical_analysis[column] = {
+            "unique_values": int(df[column].nunique()),
             "most_common": (
-                categorical_df[column]
-                .mode()
-                .iloc[0]
-                if not categorical_df[column].mode().empty
+                value_counts.index[0]
+                if not value_counts.empty
                 else None
+            ),
+            "most_common_count": (
+                int(value_counts.iloc[0])
+                if not value_counts.empty
+                else 0
             )
         }
 
-
-    # -----------------------------------------
-    # 5. Correlation matrix
-    # -----------------------------------------
-
-    correlation_matrix = (
-        numerical_df
-        .corr()
-        .round(2)
-        .fillna(0)
-        .to_dict()
-    )
-
-
-    # -----------------------------------------
-    # Return all EDA results
-    # -----------------------------------------
-
     return {
-        "numerical_summary": numerical_summary,
-        "categorical_summary": categorical_summary,
-        "correlation_matrix": correlation_matrix
+        "numerical_columns": numerical_columns,
+        "categorical_columns": categorical_columns,
+        "categorical_analysis": categorical_analysis
     }

@@ -8,289 +8,543 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Dataset Dashboard - AI Analytics Copilot</title>
+    <title>AI Analytics Copilot - Dashboard</title>
 
-    <!-- Dashboard CSS -->
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
+            color: #222;
+        }
+
+        /* -----------------------------
+           HEADER
+        ----------------------------- */
+
+        .header {
+            background-color: #1f2937;
+            color: white;
+            padding: 25px 40px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin-top: 8px;
+            color: #d1d5db;
+        }
+
+
+        /* -----------------------------
+           MAIN CONTAINER
+        ----------------------------- */
+
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 30px auto;
+        }
+
+
+        /* -----------------------------
+           DATASET NAME
+        ----------------------------- */
+
+        .dataset-name {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .dataset-name h2 {
+            margin: 0;
+        }
+
+
+        /* -----------------------------
+           CARDS
+        ----------------------------- */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .card .value {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+
+        /* -----------------------------
+           SECTIONS
+        ----------------------------- */
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+
+        /* -----------------------------
+           TWO COLUMN LAYOUT
+        ----------------------------- */
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+
+        /* -----------------------------
+           LISTS
+        ----------------------------- */
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+
+        /* -----------------------------
+           TABLES
+        ----------------------------- */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f1f3f5;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+
+        /* -----------------------------
+           CLEANING REPORT
+        ----------------------------- */
+
+        .cleaning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .cleaning-card {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+
+        .cleaning-card h3 {
+            margin-top: 0;
+            font-size: 15px;
+        }
+
+        .cleaning-card p {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+
+        /* -----------------------------
+           COLUMN BADGES
+        ----------------------------- */
+
+        .column-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            background-color: #e9ecef;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+
+        /* -----------------------------
+           FOOTER
+        ----------------------------- */
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
+
+
+        /* -----------------------------
+           RESPONSIVE
+        ----------------------------- */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .cleaning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
-    <main class="dashboard-page">
 
+<!-- ==========================================
+     HEADER
+=========================================== -->
 
-        <!-- =========================
-             DASHBOARD HEADER
-             ========================= -->
+<div class="header">
 
-        <header class="dashboard-header">
+    <h1>AI Analytics Copilot</h1>
 
-            <div>
+    <p>
+        Automated Data Analysis &amp; Decision Support
+    </p>
 
-                <p class="eyebrow">
-                    AI ANALYTICS COPILOT
-                </p>
+</div>
 
-                <h1>
-                    Dataset Dashboard
-                </h1>
 
-            </div>
 
+<div class="container">
 
-            <div class="dataset-name">
 
-                <span>
-                    Dataset
-                </span>
+    <!-- ==========================================
+         DATASET NAME
+    =========================================== -->
 
-                <strong>
-                    {{ filename }}
-                </strong>
-
-            </div>
-
-        </header>
-
-
-        <!-- =========================
-             DATASET OVERVIEW
-             ========================= -->
-
-        <section class="dashboard-section">
-
-            <div class="section-heading">
-
-                <h2>
-                    Dataset Overview
-                </h2>
-
-                <p>
-                    A quick summary of your uploaded dataset.
-                </p>
-
-            </div>
-
-
-            <div class="kpi-grid">
-
-
-                <!-- Rows -->
-
-                <div class="kpi-card">
-
-                    <span class="kpi-label">
-                        Rows
-                    </span>
-
-                    <strong class="kpi-value">
-                        {{ profile.rows }}
-                    </strong>
-
-                </div>
-
-
-                <!-- Columns -->
-
-                <div class="kpi-card">
-
-                    <span class="kpi-label">
-                        Columns
-                    </span>
-
-                    <strong class="kpi-value">
-                        {{ profile.columns }}
-                    </strong>
-
-                </div>
-
-
-                <!-- Missing Values -->
-
-                <div class="kpi-card">
-
-                    <span class="kpi-label">
-                        Missing Values
-                    </span>
-
-                    <strong class="kpi-value">
-                        {{ profile.missing_values }}
-                    </strong>
-
-                </div>
-
-
-                <!-- Duplicate Rows -->
-
-                <div class="kpi-card">
-
-                    <span class="kpi-label">
-                        Duplicate Rows
-                    </span>
-
-                    <strong class="kpi-value">
-                        {{ profile.duplicates }}
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             COLUMN INFORMATION
-             ========================= -->
-
-        <section class="dashboard-section">
-
-            <div class="section-heading">
-
-                <h2>
-                    Column Information
-                </h2>
-
-                <p>
-                    Columns automatically classified by data type.
-                </p>
-
-            </div>
-
-
-            <div class="column-grid">
-
-
-                <!-- Numerical Columns -->
-
-                <div class="column-card">
-
-                    <h3>
-                        Numerical Columns
-                    </h3>
-
-                    <ul class="column-list">
-
-                        {% for column in profile.numerical_columns %}
-
-                            <li>
-                                {{ column }}
-                            </li>
-
-                        {% endfor %}
-
-                    </ul>
-
-                </div>
-
-
-                <!-- Categorical Columns -->
-
-                <div class="column-card">
-
-                    <h3>
-                        Categorical Columns
-                    </h3>
-
-                    <ul class="column-list">
-
-                        {% for column in profile.categorical_columns %}
-
-                            <li>
-                                {{ column }}
-                            </li>
-
-                        {% endfor %}
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             DATASET PREVIEW
-             ========================= -->
-
-        <section class="dashboard-section">
-
-            <div class="section-heading">
-
-                <h2>
-                    Dataset Preview
-                </h2>
-
-                <p>
-                    Preview of the uploaded data.
-                </p>
-
-            </div>
-
-
-            <div class="table-container">
-
-                {% for table in tables %}
-
-                    {{ table | safe }}
-
-                {% endfor %}
-
-            </div>
-
-        </section>
-<!-- =========================
-     EXPLORATORY DATA ANALYSIS
-     ========================= -->
-
-<section class="dashboard-section">
-
-    <div class="section-heading">
+    <div class="dataset-name">
 
         <h2>
-            Exploratory Data Analysis
+            Dataset: {{ filename }}
         </h2>
 
         <p>
-            Statistical summary of numerical columns.
+            Automatically analyzed using Python and Pandas.
         </p>
 
     </div>
 
 
-    <div class="eda-table-container">
 
-        <table class="eda-table">
+    <!-- ==========================================
+         DATASET OVERVIEW
+    =========================================== -->
 
-            <thead>
+    <div class="cards">
 
-                <tr>
 
-                    <th>
-                        Statistic
-                    </th>
+        <div class="card">
 
-                    {% for column in eda.numerical_summary.keys() %}
+            <h3>Rows</h3>
 
-                        <th>
+            <div class="value">
+                {{ profile.rows }}
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Columns</h3>
+
+            <div class="value">
+                {{ profile.columns }}
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Missing Values</h3>
+
+            <div class="value">
+                {{ profile.missing_values }}
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Duplicate Rows</h3>
+
+            <div class="value">
+                {{ profile.duplicates }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+         CLEANING REPORT
+    =========================================== -->
+
+    <div class="section">
+
+        <h2>Data Cleaning Report</h2>
+
+
+        <div class="cleaning-grid">
+
+
+            <div class="cleaning-card">
+
+                <h3>
+                    Missing Values Before
+                </h3>
+
+                <p>
+                    {{ cleaning_report.missing_values_before }}
+                </p>
+
+            </div>
+
+
+            <div class="cleaning-card">
+
+                <h3>
+                    Missing Values After
+                </h3>
+
+                <p>
+                    {{ cleaning_report.missing_values_after }}
+                </p>
+
+            </div>
+
+
+            <div class="cleaning-card">
+
+                <h3>
+                    Duplicates Removed
+                </h3>
+
+                <p>
+                    {{ cleaning_report.duplicates_removed }}
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         COLUMN TYPES
+    =========================================== -->
+
+    <div class="section">
+
+        <h2>Column Analysis</h2>
+
+
+        <div class="two-column">
+
+
+            <!-- Numerical -->
+
+            <div>
+
+                <h3>
+                    Numerical Columns
+                </h3>
+
+                <div class="column-list">
+
+                    {% for column in eda.numerical_columns %}
+
+                        <span class="badge">
                             {{ column }}
-                        </th>
+                        </span>
+
+                    {% else %}
+
+                        <p>
+                            No numerical columns found.
+                        </p>
 
                     {% endfor %}
 
-                </tr>
+                </div>
 
-            </thead>
+            </div>
 
 
-            <tbody>
 
-                {% for statistic in ["count", "mean", "std", "min", "25%", "50%", "75%", "max"] %}
+            <!-- Categorical -->
+
+            <div>
+
+                <h3>
+                    Categorical Columns
+                </h3>
+
+                <div class="column-list">
+
+                    {% for column in eda.categorical_columns %}
+
+                        <span class="badge">
+                            {{ column }}
+                        </span>
+
+                    {% else %}
+
+                        <p>
+                            No categorical columns found.
+                        </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         STATISTICAL SUMMARY
+    =========================================== -->
+
+    <div class="section">
+
+        <h2>
+            Statistical Summary
+        </h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Statistic
+                        </th>
+
+                        {% for column in statistics.summary.keys() %}
+
+                            <th>
+                                {{ column }}
+                            </th>
+
+                        {% endfor %}
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% for statistic in
+                        ["count", "mean", "std", "min",
+                         "25%", "50%", "75%", "max"] %}
+
 
                     <tr>
 
@@ -301,96 +555,285 @@
                         </td>
 
 
-                        {% for column in eda.numerical_summary.keys() %}
+                        {% for column in statistics.summary.keys() %}
 
                             <td>
-                                {{ eda.numerical_summary[column].get(statistic, "-") }}
+
+                                {{
+                                    statistics.summary[column].get(
+                                        statistic,
+                                        "N/A"
+                                    )
+                                }}
+
                             </td>
 
                         {% endfor %}
 
+
                     </tr>
 
-                {% endfor %}
 
-            </tbody>
+                    {% endfor %}
 
-        </table>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-</section>
 
-        <!-- =========================
-             FUTURE ANALYTICS
-             ========================= -->
 
-        <section class="dashboard-section">
+    <!-- ==========================================
+         CATEGORICAL ANALYSIS
+    =========================================== -->
 
-            <div class="section-heading">
+    <div class="section">
 
-                <h2>
-                    Coming Next
-                </h2>
+        <h2>
+            Categorical Analysis
+        </h2>
 
-                <p>
-                    Automated analytics and AI-powered insights
-                    will appear here.
-                </p>
+
+        {% if eda.categorical_analysis %}
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Column
+                            </th>
+
+                            <th>
+                                Unique Values
+                            </th>
+
+                            <th>
+                                Most Common
+                            </th>
+
+                            <th>
+                                Frequency
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        {% for column, data in
+                            eda.categorical_analysis.items() %}
+
+
+                        <tr>
+
+                            <td>
+                                {{ column }}
+                            </td>
+
+                            <td>
+                                {{ data.unique_values }}
+                            </td>
+
+                            <td>
+                                {{ data.most_common }}
+                            </td>
+
+                            <td>
+                                {{ data.most_common_count }}
+                            </td>
+
+                        </tr>
+
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
 
             </div>
 
 
-            <div class="future-grid">
+        {% else %}
+
+            <p>
+                No categorical columns available.
+            </p>
+
+        {% endif %}
+
+    </div>
 
 
-                <div class="future-card">
 
-                    <h3>
-                        Exploratory Data Analysis
-                    </h3>
+    <!-- ==========================================
+         CORRELATION MATRIX
+    =========================================== -->
 
-                    <p>
-                        Discover trends, distributions,
-                        correlations, and patterns.
-                    </p>
+    <div class="section">
 
-                </div>
+        <h2>
+            Correlation Matrix
+        </h2>
 
 
-                <div class="future-card">
-
-                    <h3>
-                        AI Insights
-                    </h3>
-
-                    <p>
-                        Convert analytical findings into
-                        understandable business insights.
-                    </p>
-
-                </div>
+        {% if statistics.correlation %}
 
 
-                <div class="future-card">
+            <div class="table-container">
 
-                    <h3>
-                        ML Predictions
-                    </h3>
+                <table>
 
-                    <p>
-                        Generate predictions using
-                        machine learning models.
-                    </p>
+                    <thead>
 
-                </div>
+                        <tr>
+
+                            <th>
+                                Column
+                            </th>
+
+
+                            {% for column in
+                                statistics.correlation.keys() %}
+
+                                <th>
+                                    {{ column }}
+                                </th>
+
+                            {% endfor %}
+
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        {% for row_column, values in
+                            statistics.correlation.items() %}
+
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    {{ row_column }}
+                                </strong>
+                            </td>
+
+
+                            {% for column in
+                                statistics.correlation.keys() %}
+
+
+                                <td>
+
+                                    {{
+                                        values.get(
+                                            column,
+                                            "N/A"
+                                        )
+                                    }}
+
+                                </td>
+
+
+                            {% endfor %}
+
+
+                        </tr>
+
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
 
             </div>
 
-        </section>
+
+            <p>
+                Correlation values range from -1 to +1.
+                Values closer to +1 indicate a strong
+                positive relationship, while values closer
+                to -1 indicate a strong negative relationship.
+            </p>
 
 
-    </main>
+        {% else %}
+
+            <p>
+                Correlation analysis is not available.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+
+    <!-- ==========================================
+         DATASET PREVIEW
+    =========================================== -->
+
+    <div class="section">
+
+        <h2>
+            Cleaned Dataset Preview
+        </h2>
+
+
+        <div class="table-container">
+
+            {% for table in tables %}
+
+                {{ table | safe }}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+<!-- ==========================================
+     FOOTER
+=========================================== -->
+
+<div class="footer">
+
+    <p>
+        AI Analytics Copilot
+    </p>
+
+    <p>
+        Automated Data Analytics Platform
+    </p>
+
+</div>
 
 
 </body>
